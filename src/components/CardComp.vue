@@ -1,0 +1,45 @@
+<template>
+  <div class="card">
+    <div class="card-title">{{ product.name }}</div>
+    <div class="card-body">
+      <i class="icofont-10x icofont-{{product.icon}}"></i>
+      <form>
+        <div class="row">
+          <div class="cell">
+            <label>Type:</label>
+          </div>
+          <div class="cell">
+            <em>{{ product.type }}</em>
+          </div>
+        </div>
+        <div class="row">
+          <div class="cell">
+            <label>Price:</label>
+          </div>
+          <div class="cell">${{ fixedPrice(product.price.USD) }}</div>
+        </div>
+        <div class="row">
+          <div class="cell">
+            <label>Quantity:</label>
+          </div>
+          <div class="cell">
+            <!-- eslint-disable-next-line vue/no-mutating-props -->
+            <input type="number" v-model.number="product.quantity" />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer">
+      <button @click="addToCart(product)" class="btn btn-light">
+        Add to cart
+      </button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  // eslint-disable-next-line prettier/prettier
+  props: [ "fixedPrice", "addToCart", "product" ],
+};
+</script>
